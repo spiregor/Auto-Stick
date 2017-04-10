@@ -20,13 +20,13 @@ function AutoStick.Combo()
 	local MagicWand  = NPC.GetItem(myHero, "item_magic_wand", true)
 	local ValidHP = math.floor(Menu.GetValue(AutoStick.PercentHPOption)*myHP / 100)
 	--Log.Write(ValidHP)
-	if not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) and (MagicStick) and not NPC.HasModifier(myHero, "modifier_ice_blast") then
+	if not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) and (MagicStick) and not NPC.HasModifier(myHero, "modifier_ice_blast") and Entity.IsAlive(myHero) then
 		if Item.GetCurrentCharges(MagicStick)>=1 and Entity.GetHealth(myHero) <= ValidHP  then
 		  if Ability.IsCastable(MagicStick, 0) then Ability.CastNoTarget(MagicStick) return end
 		end
 	end
 
-	if not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) and (MagicWand) and not NPC.HasModifier(myHero, "modifier_ice_blast") then	
+	if not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) and (MagicWand) and not NPC.HasModifier(myHero, "modifier_ice_blast") and Entity.IsAlive(myHero) then	
 		if Item.GetCurrentCharges(MagicWand)>=1 and Entity.GetHealth(myHero) <= ValidHP then
 		  if Ability.IsCastable(MagicWand, 0) then Ability.CastNoTarget(MagicWand) return end
 		end
